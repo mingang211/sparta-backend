@@ -1,6 +1,7 @@
 package com.sparta.spartacoding.user;
 
-import com.sparta.spartacoding.lecture.entity.Lecture;
+import com.sparta.spartacoding.lecture.entity.Course;
+import com.sparta.spartacoding.lecture.entity.Enrollment;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,6 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
-@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,8 +33,12 @@ public class User {
     private String gender;
 
     @Column(nullable = false)
-    private boolean check;
+    private boolean isChecked;
 
     @OneToMany(mappedBy = "user")
-    private List<Lecture> lectures = new ArrayList<>();
+    private List<Course> courses = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Enrollment> enrollmentList = new ArrayList<>();
+
 }
