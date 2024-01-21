@@ -38,6 +38,7 @@ public class Course {
     @Column(nullable = false)
     private String courseTag;
 
+    @Column(nullable = false)
     private boolean courseFree;
 
     @ManyToOne
