@@ -1,6 +1,6 @@
 package com.sparta.spartacoding.user;
 
-import com.sparta.spartacoding.lecture.entity.Course;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sparta.spartacoding.lecture.entity.Enrollment;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -15,7 +15,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long userId;
 
     @Column(nullable = false)
     private String name;

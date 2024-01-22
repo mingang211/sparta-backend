@@ -1,9 +1,14 @@
 package com.sparta.spartacoding.lecture.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sparta.spartacoding.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -34,7 +39,7 @@ public class Enrollment extends Timestamped {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "coures_id")
+    @JoinColumn(name = "course_id")
     private Course course;
 
     public Enrollment(User user, Course course) {

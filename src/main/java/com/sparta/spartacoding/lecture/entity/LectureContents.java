@@ -22,8 +22,7 @@ public class LectureContents {
     private String lectureContentsTitle;
 
     @Column(nullable = false)
-    private String lectureRunTime;
-
+    private float lectureRunTime;
 
     @Column(nullable = false)
     private String lectureVideoURL;
@@ -31,4 +30,12 @@ public class LectureContents {
     @ManyToOne
     @JoinColumn(name = "Lecture_id")
     private Lecture lecture;
+
+    public LectureContents(LectureContents lectureContents) {
+        this.lectureContentsNum = lectureContents.getLectureContentsNum();
+        this.lectureContentsTitle = lectureContents.getLectureContentsTitle();
+        this.lectureRunTime = lectureContents.getLectureRunTime();
+        this.lectureVideoURL = lectureContents.getLectureVideoURL();
+        this.lecture = lectureContents.getLecture();
+    }
 }
