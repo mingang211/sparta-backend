@@ -32,12 +32,6 @@ public class User {
     @Column(nullable = false)
     private String gender;
 
-    @Column(nullable = false)
-    private boolean isChecked;
-
-    @OneToMany(mappedBy = "user")
-    private List<Course> courses = new ArrayList<>();
-
     @OneToMany(mappedBy = "user")
     private List<Enrollment> enrollmentList = new ArrayList<>();
 

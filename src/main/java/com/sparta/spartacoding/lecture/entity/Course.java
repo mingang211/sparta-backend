@@ -40,11 +40,7 @@ public class Course {
 
     @Column(nullable = false)
     private boolean courseFree;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
+    
     @OneToMany(mappedBy = "course")
     private List<Enrollment> enrollmentList = new ArrayList<>();
 
