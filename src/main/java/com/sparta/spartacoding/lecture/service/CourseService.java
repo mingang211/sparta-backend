@@ -17,6 +17,6 @@ public class CourseService {
 
 
     public List<CourseResponseDto> getMain() {
-        return courseRepository.findAll().stream().map(CourseResponseDto::new).toList();
+        return courseRepository.findByCourseFreeTrue().stream().map(CourseResponseDto::new).toList();
     }
 }
