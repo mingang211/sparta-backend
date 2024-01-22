@@ -16,10 +16,14 @@ public class LectureContents {
     private Long lectureContentsId;
 
     @Column(nullable = false)
+    private String lectureContentsNum;
+
+    @Column(nullable = false)
     private String lectureContentsTitle;
 
     @Column(nullable = false)
     private String lectureRunTime;
+
 
     @Column(nullable = false)
     private String lectureVideoURL;

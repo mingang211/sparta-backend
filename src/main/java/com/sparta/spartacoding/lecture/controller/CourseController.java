@@ -2,6 +2,7 @@ package com.sparta.spartacoding.lecture.controller;
 
 import com.sparta.spartacoding.lecture.dto.CourseAllResponseDto;
 import com.sparta.spartacoding.lecture.dto.CourseResponseDto;
+import com.sparta.spartacoding.lecture.dto.MyClassroomResponseDto;
 import com.sparta.spartacoding.lecture.entity.Enrollment;
 import com.sparta.spartacoding.lecture.service.CourseService;
 import com.sparta.spartacoding.lecture.service.EnrollmentService;
@@ -31,6 +32,12 @@ public class CourseController {
     public ResponseEntity<List<CourseAllResponseDto>> getAllPage () {
         List<CourseAllResponseDto> courseAllResponseDto =  courseService.getAllPage();
         return ResponseEntity.ok(courseAllResponseDto);
+    }
+
+    @GetMapping("/classroom/{userId}")
+    public ResponseEntity<List<MyClassroomResponseDto>> getMyPage (@PathVariable Long userId){
+        List<MyClassroomResponseDto> myClassroomResponseDto = courseService.getMyPage(userId);
+        return ResponseEntity.ok(myClassroomResponseDto);
     }
 
 
