@@ -46,26 +46,63 @@ public class CourseController {
         return ResponseEntity.ok(lectureDetailResponseDtoList);
     }
 
+    //    @GetMapping("/catalog")
+//    public ResponseEntity<List<CourseAllResponseDto>> getCoursesBySort(
+//            @RequestParam(required = false) String sortBy,@RequestParam(required = false) String tag) {
+//
+//        List<CourseAllResponseDto> courses;
+//
+//        // 정렬 기준에 따라 서비스 메서드 호출
+//        if ("popular".equals(sortBy)) {
+//            courses = courseService.getPopularCourses();
+//        } else if ("free".equals(sortBy)) {
+//            courses = courseService.getFreeCourses();
+//        } else if ("government-support".equals(sortBy)) {
+//            courses = courseService.getGovernmentSupportCourses();
+//        } else {
+//            // 정렬 기준이 지정되지 않은 경우 최신순으로 전체 목록을 반환
+//            courses = courseService.getLatestCourses();
+//        }
+//
+//        return ResponseEntity.ok(courses);
+//    }
     @GetMapping("/catalog")
     public ResponseEntity<List<CourseAllResponseDto>> getCourses(
-            @RequestParam(required = false) String sortBy) {
+            @RequestParam(required = false) String sortBy,
+            @RequestParam(required = false) String tag) {
 
         List<CourseAllResponseDto> courses;
 
-        // 정렬 기준에 따라 서비스 메서드 호출
-        if ("popular".equals(sortBy)) {
-            courses = courseService.getPopularCourses();
-        } else if ("free".equals(sortBy)) {
-            courses = courseService.getFreeCourses();
-        } else if ("government-support".equals(sortBy)) {
-            courses = courseService.getGovernmentSupportCourses();
+        // Check if sortBy parameter is present
+        if (sortBy != null && !sortBy.isEmpty()) {
+            // Call service method based on sorting criteria
+            if ("popular".equals(sortBy)) {
+                courses = courseService.getPopularCourses();
+            } else if ("free".equals(sortBy)) {
+                courses = courseService.getFreeCourses();
+            } else if ("government-support".equals(sortBy)) {
+                courses = courseService.getGovernmentSupportCourses();
+            } else {
+                // If an invalid sortBy parameter is provided, return an error or handle it accordingly
+                return ResponseEntity.badRequest().build();
+            }
+        } else if (tag != null && !tag.isEmpty()) {
+            // Check if tag parameter is present
+            // Call service method based on tagging criteria
+            courses = courseService.getTagCourses(tag);
         } else {
-            // 정렬 기준이 지정되지 않은 경우 최신순으로 전체 목록을 반환
+            // If no sorting or tagging criteria is specified, returns the entire list in latest order.
             courses = courseService.getLatestCourses();
         }
 
         return ResponseEntity.ok(courses);
     }
 
+//    @GetMapping("/catalog")
+//    public ResponseEntity<List<CourseAllResponseDto>> getCoursesByTag(
+//            @RequestParam(required = false) String tag) {
+//        List<CourseAllResponseDto> courses = courseService.getTagCourses(tag);
+//        return ResponseEntity.ok(courses);
+//    }
 
 }

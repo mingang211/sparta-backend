@@ -36,11 +36,6 @@ public class CourseService {
         return courseRepository.findByCourseFreeTrue().stream().map(CourseResponseDto::new).toList();
     }
 
-    // 전체강의 조회가 최신순으로 정렬되어있음 01/22
-    // 이 메서드는 Test용 수정해야함
-//    public List<CourseAllResponseDto> getAllPage() {
-//        return courseRepository.findAll().stream().map(CourseAllResponseDto::new).toList();
-//    }
 
     public List<MyClassroomResponseDto> getMyPage(Long userId) {
         List<Enrollment> enrollments = enrollmentRepository.findByUser_UserId(userId);
@@ -59,14 +54,13 @@ public class CourseService {
     public List<LectureResponseDto> getDetails(Long lectureId) {
         return lectureRepository.findByLectureId(lectureId).stream().map(LectureResponseDto::new).toList();
     }
-
+    //전체 강의에서 최신순, 인기순, 무료, 국비지원 키워드별로 가져오기
+    //최신순으로 가져오는건 전체 강의 가져오기 기본임
     public List<CourseAllResponseDto> getLatestCourses() {
         // 최신순으로 코스 목록을 가져오는 로직
         return courseRepository.findByOrderByCreatedAtDesc().stream().map(CourseAllResponseDto::new).toList();
     }
-
-
-
+    //인기순으로 가져오기
     public List<CourseAllResponseDto> getPopularCourses() {
         List<Course> popularCourses = courseRepository.findPopularCourses();
         List<Course> nonApplyingCourses = courseRepository.findByNonApplyingCourses();
@@ -88,15 +82,23 @@ public class CourseService {
         return allCoursesDto;
 
     }
-
+    // 무료 코스 가져오기
     public List<CourseAllResponseDto> getFreeCourses() {
-        // 무료 코스 목록을 가져오는 로직
         return courseRepository.findByCourseFreeTrue().stream().map(CourseAllResponseDto::new).toList();
     }
-
+    // 국비지원 코스 가져오기
     public List<CourseAllResponseDto> getGovernmentSupportCourses() {
-        // 국비지원이 있는 코스 목록을 가져오는 로직
         return courseRepository.findByCourseSupportTrue().stream().map(CourseAllResponseDto::new).toList();
     }
+
+    //태그별
+    public List<CourseAllResponseDto> getTagCourses(String tag) {
+        List<Course> newYearCourses = courseRepository.findByCourseTag(tag);
+
+        return newYearCourses.stream()
+                .map(CourseAllResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
 
 }

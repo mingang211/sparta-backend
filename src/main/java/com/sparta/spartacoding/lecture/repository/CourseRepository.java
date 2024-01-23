@@ -20,4 +20,6 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     @Query("SELECT c FROM Course c WHERE NOT EXISTS " +
             "(SELECT 1 FROM Enrollment e WHERE e.course = c AND e.isApplying = true)")
     List<Course> findByNonApplyingCourses();
+
+    List<Course> findByCourseTag(String str);
 }
