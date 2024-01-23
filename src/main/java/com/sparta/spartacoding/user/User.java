@@ -1,6 +1,7 @@
 package com.sparta.spartacoding.user;
 
 import com.sparta.spartacoding.lecture.entity.Lecture;
+import com.sparta.spartacoding.user.dto.SignupRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,11 +18,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @Column(nullable = false)
-    private String name;
-
     @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private String name;
 
     @Column(nullable = false)
     private String phoneNum;
@@ -32,9 +36,15 @@ public class User {
     @Column(nullable = false)
     private String gender;
 
-    @Column(nullable = false)
-    private boolean check;
-
     @OneToMany(mappedBy = "user")
     private List<Lecture> lectures = new ArrayList<>();
+
+    public User (String email, String password, SignupRequestDto requestDto){
+        this.email = email;
+        this.password = password;
+        this.name = requestDto.getName();
+        this.phoneNum = requestDto.getPhoneNumber();
+        this.birth = requestDto.getBirth();
+        this.gender = requestDto.getGender();
+    }
 }
