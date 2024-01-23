@@ -39,7 +39,7 @@ public class Course extends Timestamped{
 
     @Column(nullable = false)
     private boolean courseFree;
-    
+
     @OneToMany(mappedBy = "course")
     private List<Enrollment> enrollmentList = new ArrayList<>();
 
