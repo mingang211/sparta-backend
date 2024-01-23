@@ -11,9 +11,7 @@ import com.sparta.spartacoding.lecture.repository.EnrollmentRepository;
 import com.sparta.spartacoding.lecture.repository.LectureRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -69,9 +67,27 @@ public class CourseService {
 
 
 
-//    public List<CourseAllResponseDto> getPopularCourses() {
-//
-//    }
+    public List<CourseAllResponseDto> getPopularCourses() {
+        List<Course> popularCourses = courseRepository.findPopularCourses();
+        List<Course> nonApplyingCourses = courseRepository.findByNonApplyingCourses();
+
+        // Convert the Course entities to CourseAllResponseDto
+        List<CourseAllResponseDto> popularCoursesDto = popularCourses.stream()
+                .map(CourseAllResponseDto::new)
+                .collect(Collectors.toList());
+
+        List<CourseAllResponseDto> nonApplyingCoursesDto = nonApplyingCourses.stream()
+                .map(CourseAllResponseDto::new)
+                .collect(Collectors.toList());
+
+        // Concatenate the two lists
+        List<CourseAllResponseDto> allCoursesDto = new ArrayList<>();
+        allCoursesDto.addAll(popularCoursesDto);
+        allCoursesDto.addAll(nonApplyingCoursesDto);
+
+        return allCoursesDto;
+
+    }
 
     public List<CourseAllResponseDto> getFreeCourses() {
         // 무료 코스 목록을 가져오는 로직

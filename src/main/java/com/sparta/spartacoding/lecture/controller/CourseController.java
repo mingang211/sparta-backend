@@ -53,10 +53,9 @@ public class CourseController {
         List<CourseAllResponseDto> courses;
 
         // 정렬 기준에 따라 서비스 메서드 호출
-//        if ("popular".equals(sortBy)) {
-//            courses = courseService.getPopularCourses();
-//        } else
-        if ("free".equals(sortBy)) {
+        if ("popular".equals(sortBy)) {
+            courses = courseService.getPopularCourses();
+        } else if ("free".equals(sortBy)) {
             courses = courseService.getFreeCourses();
         } else if ("government-support".equals(sortBy)) {
             courses = courseService.getGovernmentSupportCourses();
