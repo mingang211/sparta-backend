@@ -101,4 +101,13 @@ public class CourseService {
     }
 
 
+    public List<CourseAllResponseDto> getQueryCourese(String query) {
+        List<Course> matchingCourses = courseRepository.
+                findByCourseTagContainingOrCourseTitleContainingOrCourseDescriptionContaining(query, query, query);
+
+        // Convert the Course entities to CourseAllResponseDto
+        return matchingCourses.stream()
+                .map(CourseAllResponseDto::new)
+                .collect(Collectors.toList());
+    }
 }
