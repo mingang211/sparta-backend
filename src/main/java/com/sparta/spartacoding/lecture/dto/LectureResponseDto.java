@@ -10,15 +10,15 @@ import java.util.List;
 public class LectureResponseDto {
     private Long lectureId;
     private String lectureTitle;
-    private String lectureAllRunTime;
-    private int lectureTotal;
+    private float lectureTotal;
     private List<LectureContentsResponseDto> lectureContentsList;
 
     public LectureResponseDto(Lecture lecture){
         this.lectureId = lecture.getLectureId();
         this.lectureTitle = lecture.getLectureTitle();
-        this.lectureAllRunTime = lecture.getLectureAllRunTime();
-        this.lectureTotal = lecture.getLectureContentsList().size();
+        this.lectureTotal = lecture.getLectureContentsList().stream()
+                .map(LectureContents::getLectureRunTime)
+                .reduce(0.0f, Float::sum);
         this.lectureContentsList = lecture.getLectureContentsList().stream()
                 .map(LectureContentsResponseDto::new)
                 .toList();

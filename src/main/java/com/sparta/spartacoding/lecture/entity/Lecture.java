@@ -20,9 +20,6 @@ public class Lecture {
     @Column(nullable = false)
     private String lectureTitle;
 
-    @Column(nullable = false)
-    private String lectureAllRunTime;
-
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;

@@ -1,6 +1,5 @@
 package com.sparta.spartacoding.lecture.entity;
 
-import com.sparta.spartacoding.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Table(name = "course")
-public class Course {
+public class Course extends Timestamped{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long courseId;
@@ -29,7 +28,7 @@ public class Course {
     @Column(nullable = false)
     private int coursePrice;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     private String courseImgURL;
 
     @Column(nullable = false)
