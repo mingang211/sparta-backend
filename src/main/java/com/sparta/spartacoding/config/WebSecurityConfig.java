@@ -76,7 +76,7 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests((authorizeHttpRequests) ->
                 authorizeHttpRequests
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/api/signup","/api/login").permitAll()
+                        .requestMatchers("/api/signup","/api/login", "/api","/api/catalog/**","error").permitAll()
                         .anyRequest().authenticated()
         );
 
@@ -86,13 +86,13 @@ public class WebSecurityConfig {
         // 필터 관리
         http.addFilterBefore(jwtAuthorizationFilter(), JwtAuthenticationFilter.class);
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-//        http.addFilterBefore(exceptionHandlerFilter, JwtAuthorizationFilter.class);
+        http.addFilterBefore(exceptionHandlerFilter, JwtAuthorizationFilter.class);
 
         // 접근 불가 페이지
-        http.exceptionHandling((exceptionHandling) ->
-                exceptionHandling
-                        .accessDeniedPage("/forbidden.html")
-        );
+//        http.exceptionHandling((exceptionHandling) ->
+//                exceptionHandling
+//                        .accessDeniedPage("/forbidden.html")
+//        );
 
 
         return http.build();

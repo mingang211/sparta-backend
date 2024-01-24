@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class UserCourseProgress {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userCourseProgressId;
 
     @Column(nullable = false)
