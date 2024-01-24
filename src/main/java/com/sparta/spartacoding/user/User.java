@@ -1,5 +1,7 @@
 package com.sparta.spartacoding.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.sparta.spartacoding.lecture.entity.Enrollment;
 import com.sparta.spartacoding.lecture.entity.Lecture;
 import com.sparta.spartacoding.user.dto.SignupRequestDto;
 import jakarta.persistence.*;
@@ -37,7 +39,7 @@ public class User {
     private String gender;
 
     @OneToMany(mappedBy = "user")
-    private List<Lecture> lectures = new ArrayList<>();
+    private List<Enrollment> enrollmentList = new ArrayList<>();
 
     public User (String email, String password, SignupRequestDto requestDto){
         this.email = email;
