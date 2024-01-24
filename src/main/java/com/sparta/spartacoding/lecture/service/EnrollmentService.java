@@ -22,6 +22,12 @@ public class EnrollmentService {
         this.courseRepository = courseRepository;
     }
 
+    /**
+     * 코스 신청 메서드
+     * @param userId 회원 가입시 제공되는 userId
+     * @param courseId 등록하려는 courseId
+     * @return 신청 여부
+     */
     public EnrollmentResponseDto createEnrollment(Long userId, Long courseId) {
         User user = userRepository.findById(userId).orElseThrow(
                 ()-> new IllegalArgumentException("해당 유저가 존재하지 않습니다."));
