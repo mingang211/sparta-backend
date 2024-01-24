@@ -31,11 +31,4 @@ public class LectureContents {
     @JoinColumn(name = "Lecture_id")
     private Lecture lecture;
 
-    public LectureContents(LectureContents lectureContents) {
-        this.lectureContentsNum = lectureContents.getLectureContentsNum();
-        this.lectureContentsTitle = lectureContents.getLectureContentsTitle();
-        this.lectureRunTime = lectureContents.getLectureRunTime();
-        this.lectureVideoURL = lectureContents.getLectureVideoURL();
-        this.lecture = lectureContents.getLecture();
-    }
 }

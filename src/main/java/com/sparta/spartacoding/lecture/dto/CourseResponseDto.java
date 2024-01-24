@@ -11,14 +11,21 @@ public class CourseResponseDto {
     private String courseDescription;
     private int coursePrice;
     private String courseImgURL;
-    private boolean courseFree;
+    private String courseFree;
 
     public CourseResponseDto (Course course) {
         this.courseId = course.getCourseId();
         this.courseTitle = course.getCourseTitle();
         this.courseDescription = course.getCourseDescription();
         this.coursePrice = course.getCoursePrice();
-        this.courseFree = course.isCourseFree();
         this.courseImgURL = course.getCourseImgURL();
+        /**
+         * front에서 true면 무료로, false면 ""빈 값으로 받고 싶어함.
+         */
+        if(course.isCourseFree() == true){
+            this.courseFree = "무료";
+        }else {
+            this.courseFree = "";
+        }
     }
 }
