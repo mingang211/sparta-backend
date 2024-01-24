@@ -1,7 +1,6 @@
 package com.sparta.spartacoding.lecture.controller;
 
 import com.sparta.spartacoding.lecture.dto.EnrollmentResponseDto;
-import com.sparta.spartacoding.lecture.entity.Enrollment;
 import com.sparta.spartacoding.lecture.service.EnrollmentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

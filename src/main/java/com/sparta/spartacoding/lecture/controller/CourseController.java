@@ -8,7 +8,6 @@ import com.sparta.spartacoding.lecture.service.CourseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,12 +26,6 @@ public class CourseController {
         List<CourseResponseDto> courseResponseDto = courseService.getMain();
         return ResponseEntity.ok(courseResponseDto);
     }
-
-//    @GetMapping("/catalog")
-//    public ResponseEntity<List<CourseAllResponseDto>> getAllPage() {
-//        List<CourseAllResponseDto> courseAllResponseDto = courseService.getAllPage();
-//        return ResponseEntity.ok(courseAllResponseDto);
-//    }
 
     @GetMapping("/classroom/{userId}")
     public ResponseEntity<List<MyClassroomResponseDto>> getMyPage(@PathVariable Long userId) {

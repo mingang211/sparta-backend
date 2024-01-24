@@ -7,7 +7,6 @@ import com.sparta.spartacoding.lecture.repository.CourseRepository;
 import com.sparta.spartacoding.lecture.repository.EnrollmentRepository;
 import com.sparta.spartacoding.lecture.repository.UserRepository;
 import com.sparta.spartacoding.user.User;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service

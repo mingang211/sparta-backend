@@ -1,6 +1,5 @@
 package com.sparta.spartacoding.lecture.repository;
 
-import com.sparta.spartacoding.lecture.entity.Course;
 import com.sparta.spartacoding.lecture.entity.Lecture;
 import org.springframework.data.jpa.repository.JpaRepository;
 

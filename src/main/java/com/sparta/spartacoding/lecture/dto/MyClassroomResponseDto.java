@@ -2,7 +2,6 @@ package com.sparta.spartacoding.lecture.dto;
 
 import com.sparta.spartacoding.lecture.entity.Course;
 import com.sparta.spartacoding.lecture.entity.Enrollment;
-import com.sparta.spartacoding.user.User;
 import lombok.Getter;
 
 @Getter
